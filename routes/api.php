@@ -35,4 +35,8 @@ Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('
 /**
  * @method "PUT"
  */
+
 Route::put('/merchant/edit/profil/{id}', [MerchantController::class, 'UpdateProfil']);
+Route::post('/merchant/add/menu', [MerchantController::class, 'AddMenu']);
+Route::post('/merchant/get/menu/{id}', [MerchantController::class, 'GetMenu']);
+Route::put('/merchant/update/menu/{id}', [MerchantController::class, 'UpdateMenu']);
