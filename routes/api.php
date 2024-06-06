@@ -44,3 +44,4 @@ Route::post('/merchant/get/menu/{id}', [MerchantController::class, 'GetMenu']);
 Route::put('/merchant/update/menu/{id}', [MerchantController::class, 'UpdateMenu']);
 
 Route::get('/customer/get/menu', [CustomerController::class, 'GetMenu'] );
+Route::post('/customer/add/trx', [CustomerController::class, 'AddTrx'] );
