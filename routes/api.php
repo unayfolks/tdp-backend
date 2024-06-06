@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\CustomerController;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -40,3 +42,5 @@ Route::put('/merchant/edit/profil/{id}', [MerchantController::class, 'UpdateProf
 Route::post('/merchant/add/menu', [MerchantController::class, 'AddMenu']);
 Route::post('/merchant/get/menu/{id}', [MerchantController::class, 'GetMenu']);
 Route::put('/merchant/update/menu/{id}', [MerchantController::class, 'UpdateMenu']);
+
+Route::get('/customer/get/menu', [CustomerController::class, 'GetMenu'] );
