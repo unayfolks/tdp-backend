@@ -104,4 +104,8 @@ class MerchantController extends Controller
         return response()->json($asd);
     }
 
+    function GetOrder(Request $request, $id) {
+        $qwe = DB::table('detail_order')->where('nama_perusahaan', $id)->get();
+        return response()->json($qwe);
+    }
 }

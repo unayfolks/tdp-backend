@@ -42,6 +42,8 @@ Route::put('/merchant/edit/profil/{id}', [MerchantController::class, 'UpdateProf
 Route::post('/merchant/add/menu', [MerchantController::class, 'AddMenu']);
 Route::post('/merchant/get/menu/{id}', [MerchantController::class, 'GetMenu']);
 Route::put('/merchant/update/menu/{id}', [MerchantController::class, 'UpdateMenu']);
+Route::post('/merchant/get/order/{id}', [MerchantController::class, 'GetOrder']);
 
 Route::get('/customer/get/menu', [CustomerController::class, 'GetMenu'] );
 Route::post('/customer/add/trx', [CustomerController::class, 'AddTrx'] );
+Route::post('/customer/get/order/{id}', [CustomerController::class, 'GetOrder']);
