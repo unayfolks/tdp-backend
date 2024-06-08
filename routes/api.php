@@ -47,3 +47,4 @@ Route::post('/merchant/get/order/{id}', [MerchantController::class, 'GetOrder'])
 Route::get('/customer/get/menu', [CustomerController::class, 'GetMenu'] );
 Route::post('/customer/add/trx', [CustomerController::class, 'AddTrx'] );
 Route::post('/customer/get/order/{id}', [CustomerController::class, 'GetOrder']);
+Route::post('/customer/get/detail_order/{id}', [CustomerController::class, 'GetOrderDetail']);

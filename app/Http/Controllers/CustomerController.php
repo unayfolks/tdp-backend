@@ -43,7 +43,7 @@ class CustomerController extends Controller
                     'pesanan' => $dtl['nama'],
                     'id_pesanan' => $dtl['id_menu'],
                     'nama_perusahaan' => $dtl['nama_perusahaan'],
-                    'status' => 'Proses'
+                    'status' => 'Menunggu pembayaran'
                 ];
                 DB::table('detail_order')->insert($simpandetail);
             }
@@ -64,8 +64,19 @@ class CustomerController extends Controller
     }
 
     function GetOrder(Request $request, $id) {
-        $xyz = DB::table('transaksi_user')->where('kode_user', $id)->get();
+        $xyz = DB::table('transaksi_user')
+            ->where('kode_user', $id)
+            // ->where('status', '=','Proses')
+            ->get();
 
         return response()->json($xyz);
+    }
+    function GetOrderDetail(Request $request, $id) {
+        $qwe = DB::table('detail_order')
+            ->where('kode_transaksi', $id)
+            
+            ->get();
+        
+        return response()->json($qwe);
     }
 }
