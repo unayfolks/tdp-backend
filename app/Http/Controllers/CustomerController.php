@@ -79,4 +79,41 @@ class CustomerController extends Controller
         
         return response()->json($qwe);
     }
+    function GetRegency() {
+        $regency = DB::table('regencies')
+            ->get();
+        return response()->json($regency);
+    }
+    function GetDistrict() {
+        $district = DB::table('districts')
+            ->get();
+        return response()->json($district);
+    }
+    function AddAlamat(Request $request) {
+        $simpanalamat = [
+            'kode_customer' => $request->kode_customer,
+            'alamat' => $request->alamat,
+            'latitude' => $request->lat,
+            'longitude' => $request->lng,
+            'keterangan' => $request->keterangan,
+            'alamat_display' => $request->alamat_display
+        ];
+        $alamat = DB::table('alamat_kirim_customer')->insert($simpanalamat);
+
+        if ($alamat) {
+            return response()->json([
+                'success' => true,
+                'data' => $alamat,
+            ], 201);
+        }
+
+        return response()->json([
+            'success' => false,
+        ], 409);
+    }
+    function GetAlamat(Request $request, $id) {
+        $almt = DB::table('alamat_kirim_customer')->where('kode_customer', $id)->get();
+
+        return response()->json($almt);
+    }
 }
