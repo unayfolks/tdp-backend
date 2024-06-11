@@ -47,3 +47,8 @@ Route::post('/merchant/get/order/{id}', [MerchantController::class, 'GetOrder'])
 Route::get('/customer/get/menu', [CustomerController::class, 'GetMenu'] );
 Route::post('/customer/add/trx', [CustomerController::class, 'AddTrx'] );
 Route::post('/customer/get/order/{id}', [CustomerController::class, 'GetOrder']);
+Route::post('/customer/get/detail_order/{id}', [CustomerController::class, 'GetOrderDetail']);
+Route::get('/customer/get/regency', [CustomerController::class, 'GetRegency']);
+Route::get('/customer/get/district', [CustomerController::class, 'GetDistrict']);
+Route::post('/customer/add/alamat', [CustomerController::class, 'AddAlamat']);
+Route::post('/customer/get/alamat/{id}', [CustomerController::class, 'GetAlamat']);

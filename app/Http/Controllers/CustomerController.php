@@ -43,7 +43,7 @@ class CustomerController extends Controller
                     'pesanan' => $dtl['nama'],
                     'id_pesanan' => $dtl['id_menu'],
                     'nama_perusahaan' => $dtl['nama_perusahaan'],
-                    'status' => 'Proses'
+                    'status' => 'Menunggu pembayaran'
                 ];
                 DB::table('detail_order')->insert($simpandetail);
             }
@@ -64,8 +64,56 @@ class CustomerController extends Controller
     }
 
     function GetOrder(Request $request, $id) {
-        $xyz = DB::table('transaksi_user')->where('kode_user', $id)->get();
+        $xyz = DB::table('transaksi_user')
+            ->where('kode_user', $id)
+            // ->where('status', '=','Proses')
+            ->get();
 
         return response()->json($xyz);
+    }
+    function GetOrderDetail(Request $request, $id) {
+        $qwe = DB::table('detail_order')
+            ->where('kode_transaksi', $id)
+            
+            ->get();
+        
+        return response()->json($qwe);
+    }
+    function GetRegency() {
+        $regency = DB::table('regencies')
+            ->get();
+        return response()->json($regency);
+    }
+    function GetDistrict() {
+        $district = DB::table('districts')
+            ->get();
+        return response()->json($district);
+    }
+    function AddAlamat(Request $request) {
+        $simpanalamat = [
+            'kode_customer' => $request->kode_customer,
+            'alamat' => $request->alamat,
+            'latitude' => $request->lat,
+            'longitude' => $request->lng,
+            'keterangan' => $request->keterangan,
+            'alamat_display' => $request->alamat_display
+        ];
+        $alamat = DB::table('alamat_kirim_customer')->insert($simpanalamat);
+
+        if ($alamat) {
+            return response()->json([
+                'success' => true,
+                'data' => $alamat,
+            ], 201);
+        }
+
+        return response()->json([
+            'success' => false,
+        ], 409);
+    }
+    function GetAlamat(Request $request, $id) {
+        $almt = DB::table('alamat_kirim_customer')->where('kode_customer', $id)->get();
+
+        return response()->json($almt);
     }
 }
